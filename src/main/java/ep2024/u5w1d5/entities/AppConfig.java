@@ -2,6 +2,9 @@ package ep2024.u5w1d5.entities;
 
 import com.github.javafaker.Faker;
 import ep2024.u5w1d5.enums.WorkstationType;
+import ep2024.u5w1d5.services.BuildingService;
+import ep2024.u5w1d5.services.WorkstationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,6 +13,12 @@ import java.util.List;
 
 @Configuration
 public class AppConfig {
+
+    @Autowired
+    private BuildingService buildingService;
+
+    @Autowired
+    private WorkstationService workstationService;
 
     @Bean
     public ReservationList initializeData() {
@@ -20,6 +29,7 @@ public class AppConfig {
             Building building = new Building(faker.company().name(), faker.address().streetAddress(), faker.address().city());
             buildings.add(building);
         }
+//        buildingService.saveAll(buildings);
 
         List<Workstation> workstations = new ArrayList<>();
         for (Building building : buildings) {
@@ -28,6 +38,7 @@ public class AppConfig {
                 workstations.add(workstation);
             }
         }
+//        workstationService.saveAll(workstations);
 
         return new ReservationList(buildings, workstations);
     }
