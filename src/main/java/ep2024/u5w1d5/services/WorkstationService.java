@@ -1,6 +1,7 @@
 package ep2024.u5w1d5.services;
 
 import ep2024.u5w1d5.entities.Workstation;
+import ep2024.u5w1d5.enums.WorkstationType;
 import ep2024.u5w1d5.exceptions.ItemNotFoundException;
 import ep2024.u5w1d5.repositories.WorkstationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,10 @@ public class WorkstationService {
 
     public Workstation findById(long id) {
         return workstationRepository.findById(id).orElseThrow(() -> new ItemNotFoundException(id));
+    }
+
+    public List<Workstation> findByTypeOrCity(WorkstationType type, String city) {
+        return workstationRepository.findByTypeOrCity(type, city);
     }
 
 }

@@ -3,6 +3,7 @@ package ep2024.u5w1d5;
 import ep2024.u5w1d5.entities.Reservation;
 import ep2024.u5w1d5.entities.User;
 import ep2024.u5w1d5.entities.Workstation;
+import ep2024.u5w1d5.enums.WorkstationType;
 import ep2024.u5w1d5.services.BuildingService;
 import ep2024.u5w1d5.services.ReservationService;
 import ep2024.u5w1d5.services.UserService;
@@ -12,6 +13,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Component
 public class ReservationManagerRunner implements CommandLineRunner {
@@ -64,6 +66,12 @@ public class ReservationManagerRunner implements CommandLineRunner {
 
         System.out.println("All reservations: ");
         reservationService.findAll().forEach(System.out::println);
+
+        WorkstationType type = WorkstationType.OPENSPACE;
+        String city = "Danniemouth";
+        List<Workstation> searchResults = workstationService.findByTypeOrCity(type, city);
+        System.out.println(System.lineSeparator() + "Search results for type " + type + " or city " + city);
+        searchResults.forEach(System.out::println);
 
     }
 }
