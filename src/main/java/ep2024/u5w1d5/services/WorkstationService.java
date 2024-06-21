@@ -27,7 +27,7 @@ public class WorkstationService {
         return workstationRepository.findById(id).orElseThrow(() -> new ItemNotFoundException(id));
     }
 
-    public List<Workstation> findByTypeOrCity(WorkstationType type, String city) {
+    public List<Workstation> filterByTypeAndCity(WorkstationType type, String city) {
         return workstationRepository.findByTypeOrCity(type, city);
     }
 

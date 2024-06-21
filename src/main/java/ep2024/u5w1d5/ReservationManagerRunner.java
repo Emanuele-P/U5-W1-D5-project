@@ -69,8 +69,8 @@ public class ReservationManagerRunner implements CommandLineRunner {
 
         WorkstationType type = WorkstationType.OPENSPACE;
         String city = "Danniemouth";
-        List<Workstation> searchResults = workstationService.findByTypeOrCity(type, city);
-        System.out.println(System.lineSeparator() + "Search results for type " + type + " or city " + city);
+        List<Workstation> searchResults = workstationService.filterByTypeAndCity(type, city);
+        System.out.println(System.lineSeparator() + "Search results for type " + type + " and city " + city);
         searchResults.forEach(System.out::println);
 
     }
