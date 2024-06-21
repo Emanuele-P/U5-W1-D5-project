@@ -28,7 +28,11 @@ public class WorkstationService {
     }
 
     public List<Workstation> filterByTypeAndCity(WorkstationType type, String city) {
-        return workstationRepository.findByTypeOrCity(type, city);
+        List<Workstation> workstations = workstationRepository.findByTypeOrCity(type, city);
+        if (workstations.isEmpty()) {
+            throw new ItemNotFoundException("No workstations found for type " + type + " in city " + city);
+        }
+        return workstations;
     }
 
 }

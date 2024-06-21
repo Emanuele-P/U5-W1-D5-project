@@ -9,6 +9,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface WorkstationRepository extends JpaRepository<Workstation, Long> {
-    @Query("SELECT w FROM Workstation w WHERE w.type = :type AND w.building.city = :city")
+    @Query("SELECT w FROM Workstation w WHERE w.type = :type AND LOWER(w.building.city) = LOWER(:city)")
     List<Workstation> findByTypeOrCity(@Param("type") WorkstationType type, @Param("city") String city);
 }

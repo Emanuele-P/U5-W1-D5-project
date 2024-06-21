@@ -30,6 +30,8 @@ public class ReservationManagerRunner implements CommandLineRunner {
     @Autowired
     private ReservationService reservationService;
 
+    private User currentUser;
+
     @Override
     public void run(String... args) throws Exception {
         try {
@@ -44,34 +46,35 @@ public class ReservationManagerRunner implements CommandLineRunner {
 
         User user = new User("drinkAwayMySorrow", "Jack Sparrow", "blackpearl@example.com");
 //        userService.save(user);
-//        System.out.println("All users: ");
-//        userService.findAll().forEach(System.out::println);
+//    System.out.println("All users: ");
+//       userService.findAll().forEach(System.out::println);
 //
         User foundUser = userService.findById(2);
-//        System.out.println("User found by ID: " + foundUser);
-//
-//        System.out.println("Users with username starting with '':");
+//       System.out.println("User found by ID: " + foundUser);
+
+//      System.out.println("Users with username starting with '':");
 //        userService.filterByUsername("l").forEach(System.out::println);
 
-//        foundUser.setUsername("avadaKedavra");
-//        foundUser.setFullname("Lord Voldemort");
-//        foundUser.setEmail("darkLord77@example.com");
-//        userService.findByIdAndUpdate(foundUser.getId(), foundUser);
-//        System.out.println("User updated: " + foundUser);
+//      foundUser.setUsername("avadaKedavra");
+//       foundUser.setFullname("Lord Voldemort");
+//       foundUser.setEmail("darkLord77@example.com");
+//       userService.findByIdAndUpdate(foundUser.getId(), foundUser);
+//       System.out.println("User updated: " + foundUser);
 
 
         Workstation foundWorkstation = workstationService.findById(4);
         Reservation reservation = new Reservation(LocalDate.now().plusDays(1), foundWorkstation, foundUser);
 //        reservationService.save(reservation);
-
-        System.out.println("All reservations: ");
-        reservationService.findAll().forEach(System.out::println);
+//
+//        System.out.println("All reservations: ");
+//        reservationService.findAll().forEach(System.out::println);
 
         WorkstationType type = WorkstationType.OPENSPACE;
-        String city = "Danniemouth";
+        String city = "danniemouth";
         List<Workstation> searchResults = workstationService.filterByTypeAndCity(type, city);
         System.out.println(System.lineSeparator() + "Search results for type " + type + " and city " + city);
         searchResults.forEach(System.out::println);
 
     }
 }
+

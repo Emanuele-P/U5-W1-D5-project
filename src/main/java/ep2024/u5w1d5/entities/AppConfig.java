@@ -29,7 +29,7 @@ public class AppConfig {
             Building building = new Building(faker.company().name(), faker.address().streetAddress(), faker.address().city());
             buildings.add(building);
         }
-//        buildingService.saveAll(buildings);
+        buildingService.saveAll(buildings);
 
         List<Workstation> workstations = new ArrayList<>();
         for (Building building : buildings) {
@@ -38,7 +38,7 @@ public class AppConfig {
                 workstations.add(workstation);
             }
         }
-//        workstationService.saveAll(workstations);
+        workstationService.saveAll(workstations);
 
         return new ReservationList(buildings, workstations);
     }
