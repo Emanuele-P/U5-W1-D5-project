@@ -1,6 +1,7 @@
 package ep2024.u5w1d5.services;
 
 import ep2024.u5w1d5.entities.Building;
+import ep2024.u5w1d5.exceptions.ItemNotFoundException;
 import ep2024.u5w1d5.repositories.BuildingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,5 +20,9 @@ public class BuildingService {
 
     public List<Building> findAll() {
         return buildingRepository.findAll();
+    }
+
+    public Building findById(long id) {
+        return buildingRepository.findById(id).orElseThrow(() -> new ItemNotFoundException(id));
     }
 }

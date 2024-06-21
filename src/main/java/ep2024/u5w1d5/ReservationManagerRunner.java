@@ -1,12 +1,17 @@
 package ep2024.u5w1d5;
 
+import ep2024.u5w1d5.entities.Reservation;
 import ep2024.u5w1d5.entities.User;
+import ep2024.u5w1d5.entities.Workstation;
 import ep2024.u5w1d5.services.BuildingService;
+import ep2024.u5w1d5.services.ReservationService;
 import ep2024.u5w1d5.services.UserService;
 import ep2024.u5w1d5.services.WorkstationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
 
 @Component
 public class ReservationManagerRunner implements CommandLineRunner {
@@ -20,6 +25,9 @@ public class ReservationManagerRunner implements CommandLineRunner {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private ReservationService reservationService;
+
     @Override
     public void run(String... args) throws Exception {
         try {
@@ -32,15 +40,30 @@ public class ReservationManagerRunner implements CommandLineRunner {
             System.err.println(ex.getMessage());
         }
 
-        User user = new User("helloworld", "Lord Voldemort", "email@example.com");
+        User user = new User("drinkAwayMySorrow", "Jack Sparrow", "blackpearl@example.com");
 //        userService.save(user);
 //        System.out.println("All users: ");
 //        userService.findAll().forEach(System.out::println);
 //
-//        User foundUser = userService.findById(1);
+        User foundUser = userService.findById(2);
 //        System.out.println("User found by ID: " + foundUser);
 //
 //        System.out.println("Users with username starting with '':");
 //        userService.filterByUsername("l").forEach(System.out::println);
+
+//        foundUser.setUsername("avadaKedavra");
+//        foundUser.setFullname("Lord Voldemort");
+//        foundUser.setEmail("darkLord77@example.com");
+//        userService.findByIdAndUpdate(foundUser.getId(), foundUser);
+//        System.out.println("User updated: " + foundUser);
+
+
+        Workstation foundWorkstation = workstationService.findById(4);
+        Reservation reservation = new Reservation(LocalDate.now().plusDays(1), foundWorkstation, foundUser);
+//        reservationService.save(reservation);
+
+        System.out.println("All reservations: ");
+        reservationService.findAll().forEach(System.out::println);
+
     }
 }

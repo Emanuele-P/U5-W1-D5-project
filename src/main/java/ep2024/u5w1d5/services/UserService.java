@@ -17,10 +17,10 @@ public class UserService {
 
     public User save(User user) {
         if (userRepository.existsByUsername((user.getUsername()))) {
-            throw new DuplicateItemException(user.getUsername());
+            throw new DuplicateItemException("User " + user.getUsername() + " exists already. Type another username.");
         }
         if (userRepository.existsByEmail((user.getEmail()))) {
-            throw new DuplicateItemException(user.getUsername());
+            throw new DuplicateItemException("Email " + user.getUsername() + " exists already. Type another email.");
         }
         System.out.println("User " + user.getUsername() + " created successfully!");
         return userRepository.save(user);
